@@ -1,0 +1,66 @@
+<!-- Bootstrap Navbar -->
+<nav class="navbar navbar-light bg-faded">
+  <div class="container">
+    <a class="navbar-brand" href="#">Migration Auto Runner<small>(beta)</small></a>
+  </div>
+</nav>
+<div class="grid">
+  <div class="col">
+    <form #connForm="ngForm">
+      <div class="form-fields-group">
+        <div class="form1">
+          <!--<label for="name">Load connection from saved</label>-->
+          <md-select [(ngModel)]="selectedConnInfoView" (ngModelChange)="onSelectedChanged($event)" name="selectConnInfo" placeholder="Saved connections">
+            <md-option *ngFor="let c of conectionInfoList" [value]="c.profileName">{{c.profileName}}</md-option>
+          </md-select>
+        </div>
+        <div class="form2">
+          <button md-raised-button type="submit" (click)="connectWithSelected()">Load</button>
+        </div>
+        <div class="form2">
+          <button md-button type="submit" (click)="deleteSelected()">Delete selected</button>
+        </div>
+      </div>
+    </form>
+    <div class="group">
+      <div class="form-fields-group">
+        <md-input-container class="form1">
+          <!--<label for="name">Database</label>-->
+          <input md-input type="text" class="form-control" id="databaseName" placeholder="Database <Your machine name>\sql12" [(ngModel)]="dbConnection.server"
+            ngControl="server" required novalidate>
+        </md-input-container>
+        <!--                     <div class="form2">
+                        <button type="submit" class="btn btn-default" (click)="useDefaultServer()">Use Default</button>
+                    </div> -->
+      </div>
+      <!--<div [hidden]="server.valid|| server.pristine" class="alert alert-danger validation">
+        Server name is required.
+      </div>-->
+    </div>
+  </div>
+  <div class="col">
+  </div>
+</div>
+<!--<div class="container">
+  <div [style.margin-top.px]="10" class="row">
+    <h3>Add new person</h3>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" #name>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" #age>
+      </div>
+      <button type="button" (click)="addPerson(name.value, age.value)" class="btn btn-primary">Add person</button>
+    </form>
+  </div>
+  <div [style.margin-top.px]="10" class="row">
+    <h3>People</h3>
+    <!-- Bootstrap Card -->
+<!--<div [style.margin-right.px]="10" class="card card-block col-md-3" *ngFor="let person of people">
+      <h4 class="card-title">{{person.name}} {{person.age}}</h4>
+    </div>
+  </div>
+</div>-->

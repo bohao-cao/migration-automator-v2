@@ -1,0 +1,12 @@
+1. Build an image from your Dockerfile
+While you are in the mydockerbuild directory, build the image using the docker build command. The -t parameter gives your image a tag, so you can run it more easily later. Don’t forget the . command, which tells the docker build command to look in the current directory for a file called Dockerfile. This command works the same in Linux, macOS, or Windows.
+
+$ docker build -t docker-whale .
+
+	
+2. The touch command is the easiest way to create new, empty files. It is also used to change the timestamps (i.e., dates and times of the most recent access and modification) on existing files and directories.
+
+touch's syntax is
+
+touch [option] file_name(s)
+
