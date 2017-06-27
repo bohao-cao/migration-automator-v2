@@ -1,42 +1,69 @@
 <!-- Bootstrap Navbar -->
 <nav class="navbar navbar-light bg-faded">
   <div class="container">
-    <a class="navbar-brand" href="#">Migration Auto Runner<small>(beta)</small></a>
+    <img class="logo" src="./cat-512.png" alt="logo" />
+    <a class="navbar-brand" href="#">Migration Automator<small>(beta)</small></a>
   </div>
 </nav>
 <div class="grid">
   <div class="col">
-    <form #connForm="ngForm">
-      <div class="form-fields-group">
-        <div class="form1">
-          <!--<label for="name">Load connection from saved</label>-->
-          <md-select [(ngModel)]="selectedConnInfoView" (ngModelChange)="onSelectedChanged($event)" name="selectConnInfo" placeholder="Saved connections">
-            <md-option *ngFor="let c of conectionInfoList" [value]="c.profileName">{{c.profileName}}</md-option>
-          </md-select>
-        </div>
-        <div class="form2">
-          <button md-raised-button type="submit" (click)="connectWithSelected()">Load</button>
-        </div>
-        <div class="form2">
-          <button md-button type="submit" (click)="deleteSelected()">Delete selected</button>
-        </div>
+    <form class="form-fields-group" #f="ngForm">
+      <div class="form1">
+        <!--<label for="name">Load connection from saved</label>-->
+        <md-select [(ngModel)]="selectedConnInfoView" (ngModelChange)="onSelectedChanged($event)" name="selectConnInfo" placeholder="Saved connections">
+          <md-option *ngFor="let c of conectionInfoList" [value]="c.profileName">{{c.profileName}}</md-option>
+        </md-select>
+      </div>
+      <div class="form2">
+        <button md-raised-button type="submit" (click)="connectWithSelected()">Load</button>
+      </div>
+      <div class="form2">
+        <button md-button type="submit" (click)="deleteSelected()">Delete selected</button>
       </div>
     </form>
-    <div class="group">
-      <div class="form-fields-group">
-        <md-input-container class="form1">
-          <!--<label for="name">Database</label>-->
-          <input md-input type="text" class="form-control" id="databaseName" placeholder="Database <Your machine name>\sql12" [(ngModel)]="dbConnection.server"
-            ngControl="server" required novalidate>
-        </md-input-container>
-        <!--                     <div class="form2">
-                        <button type="submit" class="btn btn-default" (click)="useDefaultServer()">Use Default</button>
-                    </div> -->
-      </div>
-      <!--<div [hidden]="server.valid|| server.pristine" class="alert alert-danger validation">
+    <md-tab-group>
+      <md-tab label="Database Configuration">
+        <form class="form-fields-group">
+          <div class="input-group">
+            <md-input-container class="form1">
+              <input md-input mdTextareaAutosize=t rue class="form-control" id="databaseName" placeholder="Database i.e. <machine name>\sql12"
+                [(ngModel)]="dbConnection.server" name="databaseName">
+            </md-input-container>
+            <span class="input-group-btn">
+          <!--<div class="form2">-->
+            <button md-raised-button type="submit" (click)="useDefaultServer()">Default Server</button>
+          <!--</div>-->
+        </span>
+          </div>
+        </form>
+        <form class="form-fields-group">
+          <div class="input-group">
+            <md-input-container class="form1">
+              <input md-input class="form-control" id="userName" placeholder="sql login, i.e. sa" [(ngModel)]="dbConnection.userName" name="userName">
+            </md-input-container>
+            <span class="input-group-btn">
+        <button md-raised-button type="submit" (click)="useDefaultUserName()">Default login</button>
+        </span>
+            <!--<div *ngIf="formErrors.name" class="alert alert-danger">
+            {{ formErrors.name }}
+          </div>-->
+          </div>
+        </form>
+        <form class="form-fields-group">    
+            <md-input-container class="form1">
+              <input md-input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="dbConnection.password" name="password">
+            </md-input-container>
+            <!--<div *ngIf="formErrors.name" class="alert alert-danger">
+            {{ formErrors.name }}
+          </div>-->
+          
+        </form>
+
+        <!--<div [hidden]="server.valid|| server.pristine" class="alert alert-danger validation">
         Server name is required.
       </div>-->
-    </div>
+      </md-tab>
+    </md-tab-group>
   </div>
   <div class="col">
   </div>
